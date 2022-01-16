@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Daily Exercise From</f:facet> 
+                        <h:outputText value="Daily Exercise Id"/>
+                        <h:inputText value="#{dailyExerciseController.dailyExercise.dailyExerciseId}"/>
+                        
+                        <h:commandButton value="User Select "  action="#{dailyExerciseController.selectDailylog}"/>
+                        <h:selectOneMenu value="#{dailyExerciseController.users.userId}">
+                            <f:selectItems value="#{courseController.selectItemsUser}"/>
+                        </h:selectOneMenu>
+                        <h:outputText value="Log Id"/>
+                        <h:inputText value="#{dailyExerciseController.dailylog.logId}"/>
+                       
+                        <h:outputText value="Exercise"/>
+                        <h:selectOneMenu value="#{dailyExerciseController.dailyExercise.excercise.excerciseId}">
+                            <f:selectItems value="#{dailyExerciseController.selectItemsExercise}"/>
+                        </h:selectOneMenu>
+                        <h:outputText value="Time"/>
+                        <h:inputText value="#{dailyExerciseController.dailyExercise.time}"/>
+                        <f:facet name="footer">
+                            <h:commandButton value="New" action="#{dailyExerciseController.clear}"/> 
+                            <h:commandButton value="Save" action="#{dailyExerciseController.save}"/> 
+                            <h:commandButton value="Find" action="#{dailyExerciseController.find}"/> 
+                            <h:commandButton value="Edit" action="#{dailyExerciseController.update}"/> 
+                            <h:commandButton value="Delete" action="#{dailyExerciseController.delete}"/> 
+                            <h:commandButton value="Display" action="#{dailyExerciseController.display}"/> 
+                          
+                        </f:facet>
+                    </p:panelGrid>
+                       <h:outputText value="#{dailyExerciseController.msg}"/>
+                </h:form>
+                <p:dataTable var="de" value="#{dailyExerciseController.dailyExercises}">
+                    <p:column headerText="Daily Exercise Id">
+                        <h:outputText  value="#{de.dailyExerciseId}"/>
+                    </p:column>
+                    <p:column headerText="Log Id">
+                        <h:outputText  value="#{de.dailylog.logId}"/>
+                    </p:column>
+                    <p:column headerText="Exercise Name">
+                        <h:outputText  value="#{de.excercise.excerciseName}"/>
+                    </p:column>
+                    <p:column headerText="Time">
+                        <h:outputText  value="#{de.time}"/>
+                    </p:column>
+                   
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

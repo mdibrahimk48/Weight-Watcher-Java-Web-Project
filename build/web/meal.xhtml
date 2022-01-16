@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Meal Registration From</f:facet> 
+                        <h:outputText value="Meal Id"/>
+                        <h:inputText value="#{mealController.meal.mealId}"/>
+                        <h:outputText value="Meal Name"/>
+                        <h:inputText value="#{mealController.meal.mealName}"/>
+                        <h:outputText value="Meal Unit (Gram)"/>
+                        <h:inputText value="#{mealController.meal.mealUnit}"/>
+                        <h:outputText value="Meal Calorie"/>
+                        <h:inputText value="#{mealController.meal.mealCalorie}"/>                      
+                        
+                        <f:facet name="footer">
+                            <h:commandButton value="New" action="#{mealController.clear}"/> 
+                            <h:commandButton value="Save" action="#{mealController.save}"/> 
+                            <h:commandButton value="Find" action="#{mealController.find}"/> 
+                            <h:commandButton value="Edit" action="#{mealController.update}"/> 
+                            <h:commandButton value="Delete" action="#{mealController.delete}"/> 
+                            <h:commandButton value="Display" action="#{mealController.display}"/> 
+                          
+                        </f:facet>
+                    </p:panelGrid>
+                     <h:outputText value="#{mealController.msg}"/>
+                </h:form>
+                <p:dataTable var="m" value="#{mealController.meals}">
+                    <p:column headerText="Meal Id">
+                        <h:outputText  value="#{m.mealId}"/>
+                    </p:column>
+                    <p:column headerText="Meal Name">
+                        <h:outputText  value="#{m.mealName}"/>
+                    </p:column>
+                    <p:column headerText="Meal Unit (Gram)">
+                        <h:outputText  value="#{m.mealUnit}"/>
+                    </p:column>
+                    <p:column headerText="Meal Calorie">
+                        <h:outputText  value="#{m.mealCalorie}"/>
+                    </p:column>
+                   
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Daily Report</f:facet> 
+                        
+                
+                       <h:commandButton value="User Select "  />
+                       <h:selectOneMenu value="#{reportController.users.userId}">
+                            <f:selectItems value="#{courseController.selectItemsUser}"/>
+                        </h:selectOneMenu>
+                      
+                        <f:facet name="footer">
+                            <h:commandButton value="Display Report" action="#{reportController.viewReport}"/> 
+                        </f:facet>
+                    </p:panelGrid>
+                   
+                </h:form>
+                <p:dataTable var="ud" value="#{reportController.reports}">
+                    <p:column headerText="User Id">
+                        <h:outputText  value="#{ud.userId}"/>
+                    </p:column>
+                    <p:column headerText="User Name">
+                        <h:outputText  value="#{ud.userName}"/>
+                    </p:column>
+                    <p:column headerText="Daily Log Date">
+                        <h:outputText  value="#{ud.date}"/>
+                    </p:column>
+                      <p:column headerText="Exercise Time">
+                        <h:outputText  value="#{ud.time}"/>
+                    </p:column>
+                    <p:column headerText="Meal Intake">
+                        <h:outputText  value="#{ud.mealIntake}"/>
+                    </p:column>
+                   <p:column headerText="Meal Calories">
+                       <h:outputText  value="#{ud.mealCalorie}"/>
+                    </p:column>
+                  
+                    <p:column headerText="Exercise Burn Calories">
+                        <h:outputText  value="#{ud.burnCalorie*ud.time}"/>
+                    </p:column>
+                    <p:column headerText="Gain Calories">
+                        <h:outputText  value="#{ud.mealIntake*ud.mealCalorie-ud.time*ud.burnCalorie}"/>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

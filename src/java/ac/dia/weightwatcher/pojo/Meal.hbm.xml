@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 27, 2017 2:42:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ac.dia.weightwatcher.pojo.Meal" table="meal" catalog="weightwatcher" optimistic-lock="version">
+        <id name="mealId" type="java.lang.Integer">
+            <column name="mealId" />
+            <generator class="identity" />
+        </id>
+        <property name="mealName" type="string">
+            <column name="mealName" length="25" />
+        </property>
+        <property name="mealUnit" type="java.lang.Integer">
+            <column name="mealUnit" />
+        </property>
+        <property name="mealCalorie" type="java.lang.Integer">
+            <column name="mealCalorie" />
+        </property>
+        <set name="dailymeals" table="dailymeal" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="mealId" not-null="true" />
+            </key>
+            <one-to-many class="ac.dia.weightwatcher.pojo.Dailymeal" />
+        </set>
+    </class>
+</hibernate-mapping>

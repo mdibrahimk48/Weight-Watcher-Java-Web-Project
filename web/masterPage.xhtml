@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body style="background:">
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                <ui:insert name="top"> Weight Watcher Management Group </ui:insert>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                <ui:insert name="left">
+                    <p:menu>
+                        
+                        <p:menuitem value="Home" url="masterPage.xhtml" />
+                        
+                        <p:submenu label="Trainner">
+                            <p:menuitem value="User Regstration" url="userReg.xhtml" />
+                            <p:menuitem value="Meal" url="meal.xhtml" />
+                            <p:menuitem value="Exercise" url="excercise.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Trainnee">
+                            <p:menuitem value="Daily Log" url="dailylog.xhtml" />
+                            <p:menuitem value="Course" url="course.xhtml" />
+                            <p:menuitem value="Activity" url="activity.xhtml" />
+                            <p:menuitem value="Daily Exercise" url="dailyExercise.xhtml" />
+                            <p:menuitem value="Daily Meal" url="dailyMeal.xhtml" />
+                            <p:menuitem value="Daily Measurement" url="dailyMeasurement.xhtml" />
+                            
+                        </p:submenu>
+                        <p:submenu label="Report">
+                            <p:menuitem value="Daily Report" url="reports.xhtml" />
+                            <p:menuitem value="Report Chart" url="reportChart.xhtml" />
+                            <p:menuitem value="Monthly Report" url="#" />
+                        </p:submenu>
+                    </p:menu>
+                </ui:insert>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="content" class="my"> This is Weight Watcher Management Group's Content Page </ui:insert>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                <ui:insert name="bottom">Footer</ui:insert>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+
+</html>

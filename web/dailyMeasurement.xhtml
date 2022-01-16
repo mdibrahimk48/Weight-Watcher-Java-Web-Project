@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                 <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Daily Measurement From</f:facet> 
+                        <h:outputText value="Daily Measurement Id"/>
+                        <h:inputText value="#{dailyMeasurementController.dailyMeasurement.dailyMeasurementId}"/>
+                        
+                        <h:commandButton value="User Select "  action="#{dailyMeasurementController.selectDailylog}"/>
+                        <h:selectOneMenu value="#{dailyMeasurementController.users.userId}">
+                            <f:selectItems value="#{courseController.selectItemsUser}"/>
+                        </h:selectOneMenu>
+                        <h:outputText value="Log Id"/>
+                        <h:inputText value="#{dailyMeasurementController.dailylog.logId}"/>
+                       
+                        <h:outputText value="Waist Size"/>
+                        <h:inputText value="#{dailyMeasurementController.dailyMeasurement.waistSize}"/>
+                        
+                        <h:outputText value="Weight"/>
+                        <h:inputText value="#{dailyMeasurementController.dailyMeasurement.weight}"/>
+                         <h:outputText value="Shift"/>
+                        <h:selectOneRadio value="#{dailyMeasurementController.dailyMeasurement.shift}">
+                            <f:selectItem itemLabel="Morning" itemValue="Morning"/>
+                            <f:selectItem itemLabel="Evining" itemValue="Evining"/>
+                        </h:selectOneRadio>
+                        
+                        <f:facet name="footer">
+                            <h:commandButton value="New" action="#{dailyMeasurementController.clear}"/> 
+                            <h:commandButton value="Save" action="#{dailyMeasurementController.save}"/> 
+                            <h:commandButton value="Find" action="#{dailyMeasurementController.find}"/> 
+                            <h:commandButton value="Edit" action="#{dailyMeasurementController.update}"/> 
+                            <h:commandButton value="Delete" action="#{dailyMeasurementController.delete}"/> 
+                            <h:commandButton value="Display" action="#{dailyMeasurementController.display}"/> 
+                          
+                        </f:facet>
+                    </p:panelGrid>
+                       <h:outputText value="#{dailyMeasurementController.msg}"/>
+                </h:form>
+                <p:dataTable var="dmc" value="#{dailyMeasurementController.dailyMeasurements}">
+                    <p:column headerText="Daily Measurement Id">
+                        <h:outputText  value="#{dmc.dailyMeasurementId}"/>
+                    </p:column>
+                    <p:column headerText="Log Id">
+                        <h:outputText  value="#{dmc.dailylog.logId}"/>
+                    </p:column>
+                    <p:column headerText="Waist Size">
+                        <h:outputText  value="#{dmc.waistSize}"/>
+                    </p:column>
+                    <p:column headerText="Weight">
+                        <h:outputText  value="#{dmc.weight}"/>
+                    </p:column>
+                    <p:column headerText="Shift">
+                        <h:outputText  value="#{dmc.shift}"/>
+                    </p:column>
+                   
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

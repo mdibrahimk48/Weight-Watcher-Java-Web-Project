@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 27, 2017 2:42:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="weightwatcher" name="ac.dia.weightwatcher.pojo.Dailylog" optimistic-lock="version" table="dailylog">
+    <id name="logId" type="java.lang.Integer">
+      <column name="logId"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="ac.dia.weightwatcher.pojo.Activity" fetch="select" name="activity">
+      <column name="activityId" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="ac.dia.weightwatcher.pojo.Course" fetch="select" name="course">
+      <column name="courseId" not-null="true"/>
+    </many-to-one>
+    <property name="date" type="date">
+      <column length="10" name="date" not-null="true"/>
+    </property>
+    <property name="progress" type="string">
+      <column length="200" name="progress" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="dailymeals" table="dailymeal">
+      <key>
+        <column name="logId" not-null="true"/>
+      </key>
+      <one-to-many class="ac.dia.weightwatcher.pojo.Dailymeal"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="dailyexercises" table="dailyexercise">
+      <key>
+        <column name="logId" not-null="true"/>
+      </key>
+      <one-to-many class="ac.dia.weightwatcher.pojo.Dailyexercise"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="deilymeasurements" table="deilymeasurement">
+      <key>
+        <column name="logId" not-null="true"/>
+      </key>
+      <one-to-many class="ac.dia.weightwatcher.pojo.Dailymeasurement"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                 <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Daily Meal From</f:facet> 
+                        <h:outputText value="Daily Meal Id"/>
+                        <h:inputText value="#{dailyMealController.dailyMeal.dailyMealId}"/>
+                        
+                        <h:commandButton value="User Select "  action="#{dailyMealController.selectDailylog}"/>
+                        <h:selectOneMenu value="#{dailyMealController.users.userId}">
+                            <f:selectItems value="#{courseController.selectItemsUser}"/>
+                        </h:selectOneMenu>
+                        <h:outputText value="Log Id"/>
+                        <h:inputText value="#{dailyMealController.dailylog.logId}"/>
+                       
+                        <h:outputText value="Meal"/>
+                        <h:selectOneMenu value="#{dailyMealController.dailyMeal.meal.mealId}">
+                            <f:selectItems value="#{dailyMealController.selectItemsMeal}"/>
+                        </h:selectOneMenu>
+                        <h:outputText value="Meal Intake (Gram)"/>
+                        <h:inputText value="#{dailyMealController.dailyMeal.mealIntake}"/>
+                        <f:facet name="footer">
+                            <h:commandButton value="New" action="#{dailyMealController.clear}"/> 
+                            <h:commandButton value="Save" action="#{dailyMealController.save}"/> 
+                            <h:commandButton value="Find" action="#{dailyMealController.find}"/> 
+                            <h:commandButton value="Edit" action="#{dailyMealController.update}"/> 
+                            <h:commandButton value="Delete" action="#{dailyMealController.delete}"/> 
+                            <h:commandButton value="Display" action="#{dailyMealController.display}"/> 
+                          
+                        </f:facet>
+                    </p:panelGrid>
+                       <h:outputText value="#{dailyMealController.msg}"/>
+                </h:form>
+                <p:dataTable var="dm" value="#{dailyMealController.dailyMeals}">
+                    <p:column headerText="Daily Meal Id">
+                        <h:outputText  value="#{dm.dailyMealId}"/>
+                    </p:column>
+                    <p:column headerText="Log Id">
+                        <h:outputText  value="#{dm.dailylog.logId}"/>
+                    </p:column>
+                    <p:column headerText="Meal Name">
+                        <h:outputText  value="#{dm.meal.mealName}"/>
+                    </p:column>
+                    <p:column headerText="Meal Intake (Gram)">
+                        <h:outputText  value="#{dm.mealIntake}"/>
+                    </p:column>
+                   
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

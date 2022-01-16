@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+            
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">User Registration From</f:facet> 
+                        <h:outputText value="User Id"/>
+                        <h:inputText value="#{userController.user.userId}"/>
+                        <h:outputText value="User Name"/>
+                        <h:inputText value="#{userController.user.userName}"/>
+                        <h:outputText value="User Gender"/>
+                        <h:selectOneRadio value="#{userController.user.gender}">
+                            <f:selectItem itemLabel="Male" itemValue="Male"/>
+                            <f:selectItem itemLabel="Female" itemValue="Female"/>
+                        </h:selectOneRadio>
+                        <h:outputText value="User Age"/>
+                        <h:inputText value="#{userController.user.age}"/>
+                        <h:outputText value="User Height (Meeter)"/>
+                        <h:inputText value="#{userController.user.height}" />
+                        <h:outputText value="User Weight (K.G)"/>
+                        <h:inputText value="#{userController.user.weight}"/>
+                        <h:outputText value="Waist Size (INC)"/>
+                        <h:inputText value="#{userController.user.waistSize}"/>
+                        <h:outputText value="Body Mess Index"/>
+                        <h:inputText value="#{userController.user.bmi}"/>
+                        
+                        <f:facet name="footer">
+                            <h:commandButton value="New" action="#{userController.clear}"/> 
+                            <h:commandButton value="Save" action="#{userController.save}"/> 
+                            <h:commandButton value="Find" action="#{userController.find}"/> 
+                            <h:commandButton value="Edit" action="#{userController.update}"/> 
+                            <h:commandButton value="Delete" action="#{userController.delete}"/> 
+                            <h:commandButton value="Display" action="#{userController.display}"/> 
+                          
+                        </f:facet>
+                    </p:panelGrid>
+                      <h:outputText value="#{userController.msg}"/>
+                </h:form>
+                <p:dataTable var="u" value="#{userController.userses}">
+                    <p:column headerText="Id">
+                        <h:outputText  value="#{u.userId}"/>
+                    </p:column>
+                    <p:column headerText="Name">
+                        <h:outputText  value="#{u.userName}"/>
+                    </p:column>
+                    <p:column headerText="Gender">
+                        <h:outputText  value="#{u.gender}"/>
+                    </p:column>
+                    <p:column headerText="Age">
+                        <h:outputText  value="#{u.age}"/>
+                    </p:column>
+                    <p:column headerText="Height">
+                        <h:outputText  value="#{u.height}"/>
+                    </p:column>
+                    <p:column headerText="Weight">
+                        <h:outputText  value="#{u.weight}"/>
+                    </p:column>
+                    <p:column headerText="waist Size">
+                        <h:outputText  value="#{u.waistSize}"/>
+                    </p:column>
+                    <p:column headerText="BMI">
+                        <h:outputText  value="#{u.bmi}"/>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 27, 2017 2:42:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ac.dia.weightwatcher.pojo.Dailyexercise" table="dailyexercise" catalog="weightwatcher" optimistic-lock="version">
+        <id name="dailyExerciseId" type="java.lang.Integer">
+            <column name="dailyExerciseId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="dailylog" class="ac.dia.weightwatcher.pojo.Dailylog" fetch="select">
+            <column name="logId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="excercise" class="ac.dia.weightwatcher.pojo.Excercise" fetch="select">
+            <column name="exerciseId" not-null="true" />
+        </many-to-one>
+        <property name="time" type="string">
+            <column name="time" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

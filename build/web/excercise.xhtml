@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Exercise Registration From</f:facet> 
+                        <h:outputText value="Excercise Id"/>
+                        <h:inputText value="#{excerciseController.excercise.excerciseId}"/>
+                        <h:outputText value="Excercise Name"/>
+                        <h:inputText value="#{excerciseController.excercise.excerciseName}"/>
+                        <h:outputText value="Excercise Type"/>
+                        <h:inputText value="#{excerciseController.excercise.type}"/>
+                        <h:outputText value="Excercise Time (Minute)"/>
+                        <h:inputText value="#{excerciseController.excercise.time}"/>
+                        <h:outputText value="Burn Calorie"/>
+                        <h:inputText value="#{excerciseController.excercise.burnCalorie}"/>
+                        
+                        
+                        <f:facet name="footer">
+                            <h:commandButton value="New" action="#{excerciseController.clear}"/> 
+                            <h:commandButton value="Save" action="#{excerciseController.save}"/> 
+                            <h:commandButton value="Find" action="#{excerciseController.find}"/> 
+                            <h:commandButton value="Edit" action="#{excerciseController.update}"/> 
+                            <h:commandButton value="Delete" action="#{excerciseController.delete}"/> 
+                            <h:commandButton value="Display" action="#{excerciseController.display}"/> 
+                          
+                        </f:facet>
+                    </p:panelGrid>
+                     <h:outputText value="#{excerciseController.msg}"/>
+                </h:form>
+                <p:dataTable var="e" value="#{excerciseController.excercises}">
+                    <p:column headerText="Exercise Id">
+                        <h:outputText  value="#{e.excerciseId}"/>
+                    </p:column>
+                    <p:column headerText="Exercise Name">
+                        <h:outputText  value="#{e.excerciseName}"/>
+                    </p:column>
+                    <p:column headerText="Exercise Type">
+                        <h:outputText  value="#{e.type}"/>
+                    </p:column>
+                    <p:column headerText="Exercise Time (Minute)">
+                        <h:outputText  value="#{e.time}"/>
+                    </p:column>
+                   <p:column headerText="Burn Calories">
+                       <h:outputText  value="#{e.burnCalorie}"/>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

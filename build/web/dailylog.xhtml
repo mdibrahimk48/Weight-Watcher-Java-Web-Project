@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Daily Log From</f:facet> 
+                        <h:outputText value="Log Id"/>
+                        <h:inputText value="#{dailyLogController.dailyLog.logId}"/>
+                
+                        <h:commandButton value="User Select "  action="#{dailyLogController.selectCourse}"/>
+                        <h:selectOneMenu value="#{dailyLogController.users.userId}">
+                            <f:selectItems value="#{courseController.selectItemsUser}"/>
+                        </h:selectOneMenu>
+                        <h:outputText value="Course"/>
+                        <h:inputText value="#{dailyLogController.course.courseId}"/>
+                        <h:outputText value="Activity"/>
+                        <h:selectOneMenu value="#{dailyLogController.dailyLog.activity.activityId}">
+                            <f:selectItems value="#{dailyLogController.selectItemsActivity}"/>
+                        </h:selectOneMenu>
+                        <h:outputText value="Date"/>
+                        <p:calendar pattern="yyyy-MM-dd" value="#{dailyLogController.dailyLog.date}"/>
+                        <h:outputText value="Progress"/>
+                        <h:inputText value="#{dailyLogController.dailyLog.progress}"/>
+                        <f:facet name="footer">
+                            <h:commandButton value="New" action="#{dailyLogController.clear}"/> 
+                            <h:commandButton value="Save" action="#{dailyLogController.save}"/> 
+                            <h:commandButton value="Find" action="#{dailyLogController.find}"/> 
+                            <h:commandButton value="Edit" action="#{dailyLogController.update}"/> 
+                            <h:commandButton value="Delete" action="#{dailyLogController.delete}"/> 
+                            <h:commandButton value="Display" action="#{dailyLogController.display}"/> 
+                          
+                        </f:facet>
+                    </p:panelGrid>
+                       <h:outputText value="#{dailyLogController.msg}"/>
+                </h:form>
+                <p:dataTable var="dl" value="#{dailyLogController.dailyLogs}">
+                    <p:column headerText="Log Id">
+                        <h:outputText  value="#{dl.logId}"/>
+                    </p:column>
+                    <p:column headerText="Course Id">
+                        <h:outputText  value="#{dl.course.courseId}"/>
+                    </p:column>
+                    <p:column headerText="Activity Name">
+                        <h:outputText  value="#{dl.activity.activityName}"/>
+                    </p:column>
+                    <p:column headerText="Date">
+                        <h:outputText  value="#{dl.date}"/>
+                    </p:column>
+                   <p:column headerText="Progress">
+                       <h:outputText  value="#{dl.progress}"/>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+            
+
+        </ui:composition>
+
+    </body>
+</html>

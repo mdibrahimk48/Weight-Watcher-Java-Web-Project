@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 27, 2017 2:42:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="weightwatcher" name="ac.dia.weightwatcher.pojo.Dailymeasurement" optimistic-lock="version" table="deilymeasurement">
+    <id name="dailyMeasurementId" type="java.lang.Integer">
+      <column name="dailyMeasurementId"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="ac.dia.weightwatcher.pojo.Dailylog" fetch="select" name="dailylog">
+      <column name="logId" not-null="true"/>
+    </many-to-one>
+    <property name="waistSize" type="java.lang.Double">
+      <column name="waistSize" />
+    </property>
+    <property name="weight" type="java.lang.Double">
+      <column  name="weight" />
+    </property>
+    <property name="shift" type="string">
+      <column length="15" name="shift" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

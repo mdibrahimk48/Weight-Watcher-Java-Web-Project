@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+     
+
+          
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      >
+      <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                
+                   <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Activity From</f:facet> 
+                        <h:outputText value="User Id"/>
+                        <h:inputText value="#{activityController.activity.activityId}"/>
+                        <h:outputText value="User Name"/>
+                        <h:inputText value="#{activityController.activity.activityName}"/>
+                        
+                        <f:facet name="footer">
+                            <h:commandButton value="New" action="#{activityController.clear}"/> 
+                            <h:commandButton value="Save" action="#{activityController.save}"/> 
+                            <h:commandButton value="Find" action="#{activityController.find}"/> 
+                            <h:commandButton value="Edit" action="#{activityController.update}"/> 
+                            <h:commandButton value="Delete" action="#{activityController.delete}"/> 
+                            <h:commandButton value="Display" action="#{activityController.display}"/> 
+                          
+                        </f:facet>
+                    </p:panelGrid>
+                       <h:outputText value="#{activityController.msg}"/>
+                </h:form>
+                <p:dataTable var="a" value="#{activityController.activities}">
+                    <p:column headerText="Activity Id">
+                        <h:outputText  value="#{a.activityId}"/>
+                    </p:column>
+                    <p:column headerText="Activity Name">
+                        <h:outputText  value="#{a.activityName}"/>
+                    </p:column>
+                    
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
